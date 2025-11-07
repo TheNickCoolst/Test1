@@ -66,42 +66,53 @@ except:
     MODERNGL_AVAILABLE = False
 import psutil
 
-# Konfiguration
-RESOLUTION = (3840, 2160)  # 4K
+# Konfiguration - KRASSER MODUS! 🔥
+RESOLUTION = (7680, 4320)  # 8K ULTRA HD!
 TEST_DIR = Path("./sandbox_stress_test")
-NUM_PARTICLES = 500000  # Halbe Million Partikel
-NUM_CPU_WORKERS = mp.cpu_count() * 2  # Doppelte CPU-Core-Anzahl
-FILE_STRESS_SIZE_MB = 100  # Größe der Test-Dateien
+NUM_PARTICLES = 1000000  # 1 MILLION Partikel!
+NUM_CPU_WORKERS = mp.cpu_count() * 4  # VIERFACHE CPU-Core-Anzahl!
+FILE_STRESS_SIZE_MB = 200  # 200 MB Test-Dateien!
+RAM_CHUNK_SIZE_MB = 200  # 200 MB RAM-Chunks
+MAX_RAM_CHUNKS = 100  # Bis zu 20 GB RAM!
 
 print("""
 ╔════════════════════════════════════════════════════════════════╗
-║        MAX ANIM BURN - EXTREME SANDBOX STRESS TEST            ║
+║     🔥🔥🔥 MAX ANIM BURN - KRASSER MODUS! 🔥🔥🔥              ║
+║        EXTREME SANDBOX STRESS TEST - ULTRA EDITION            ║
 ╚════════════════════════════════════════════════════════════════╝
 
-⚠️  ACHTUNG: EXTREME SYSTEM-AUSLASTUNG! ⚠️
+⚠️⚠️⚠️  ACHTUNG: EXTREME SYSTEM-AUSLASTUNG! ⚠️⚠️⚠️
 
-Dieses Programm wird:
-✓ ALLE CPU-Cores auf 100% auslasten
-✓ GPU maximal belasten (Rendering)
-✓ RAM massiv allokieren (mehrere GB)
-✓ Massive Disk I/O Operationen durchführen
-✓ Test-Dateien erstellen und löschen
+Dieses Programm wird ALLES ZERSTÖREN:
+✓ ALLE CPU-Cores auf 100% auslasten (x4 Workers pro Core!)
+✓ GPU MAXIMAL belasten (8K Rendering mit 1 Mio. Partikeln!)
+✓ RAM BRUTAL allokieren (bis zu 20 GB!)
+✓ MASSIVE Disk I/O (200 MB Dateien, 3 Worker!)
+✓ Crypto-Mining-Simulation (SHA256-Hashing!)
+✓ Fraktal-Generierung und Matrix-Operationen!
 
-⚠️  NUR FÜR SANDBOX/VM-TESTS VERWENDEN! ⚠️
+⚠️⚠️⚠️  NUR FÜR SANDBOX/VM-TESTS VERWENDEN! ⚠️⚠️⚠️
+🚨 DEIN PC WIRD WAHRSCHEINLICH EINFRIEREN! 🚨
 
 System-Info:
 - CPU Cores: {cores}
 - RAM Total: {ram:.1f} GB
 - Test-Prozesse: {workers}
-- Auflösung: {res[0]}x{res[1]} (4K)
+- Auflösung: {res[0]}x{res[1]} (8K ULTRA HD!)
 - Partikel: {particles:,}
+- File Size: {filesize} MB
+- Max RAM: {maxram} GB
+
+🔥🔥🔥 KRASSER MODUS AKTIVIERT! 🔥🔥🔥
 
 """.format(
     cores=mp.cpu_count(),
     ram=psutil.virtual_memory().total / (1024**3),
     workers=NUM_CPU_WORKERS,
     res=RESOLUTION,
-    particles=NUM_PARTICLES
+    particles=NUM_PARTICLES,
+    filesize=FILE_STRESS_SIZE_MB,
+    maxram=RAM_CHUNK_SIZE_MB * MAX_RAM_CHUNKS / 1024
 ))
 
 response = input("Fortfahren? (JA/nein): ").strip().upper()
@@ -158,25 +169,60 @@ def cpu_burner_mandelbrot(worker_id):
 
 
 def cpu_burner_matrix(worker_id):
-    """Massive Matrix-Operationen"""
-    print(f"[CPU-Worker {worker_id}] Gestartet - Matrix Operationen")
+    """KRASSE Massive Matrix-Operationen - 3000x3000!"""
+    print(f"[CPU-Worker {worker_id}] Gestartet - EXTREME Matrix Operationen")
 
     iteration = 0
     while True:
-        size = 2000
+        size = 3000  # Noch größer!
         A = np.random.rand(size, size)
         B = np.random.rand(size, size)
 
-        # Verschiedene intensive Operationen
+        # NOCH MEHR intensive Operationen
         C = np.dot(A, B)
         D = np.linalg.inv(C + np.eye(size) * 0.1)
-        E = np.linalg.svd(A[:500, :500])
+        E = np.linalg.svd(A[:800, :800])  # Größere SVD
         F = np.fft.fft2(C)
-        G = np.exp(A[:100, :100])
+        G = np.exp(A[:200, :200])
+        H = np.sin(C) + np.cos(C)  # Trigonometrie
+        I = np.power(A[:100, :100], 3)  # Potenzen
 
         iteration += 1
         if iteration % 10 == 0:
-            print(f"[CPU-Worker {worker_id}] Matrix-Op {iteration} - {size}x{size}")
+            print(f"[CPU-Worker {worker_id}] 🔥 Matrix-Op {iteration} - {size}x{size}")
+
+
+# ═══════════════════════════════════════════════════════════════
+# CRYPTO MINING SIMULATOR - EXTREME CPU BURN!
+# ═══════════════════════════════════════════════════════════════
+
+def cpu_burner_crypto_simulator(worker_id):
+    """Simuliert Crypto-Mining mit SHA256-Hash-Berechnungen - EXTREM!"""
+    print(f"[CRYPTO-Worker {worker_id}] Gestartet - Crypto Mining Simulation")
+
+    import hashlib
+    iteration = 0
+    total_hashes = 0
+
+    while True:
+        # Simuliere Proof-of-Work Mining
+        nonce = 0
+        target = "0000"  # 4 führende Nullen
+
+        for _ in range(100000):  # 100k Hashes pro Iteration
+            data = f"Block{iteration}Nonce{nonce}Worker{worker_id}".encode()
+            hash_result = hashlib.sha256(data).hexdigest()
+
+            if hash_result.startswith(target):
+                print(f"[CRYPTO-Worker {worker_id}] 💎 BLOCK GEFUNDEN! Hash: {hash_result[:16]}... (Nonce: {nonce})")
+
+            nonce += 1
+            total_hashes += 1
+
+        iteration += 1
+        if iteration % 20 == 0:
+            mhash_per_sec = (100000 * 20) / 1000000
+            print(f"[CRYPTO-Worker {worker_id}] 🔥 {total_hashes:,} Hashes - {mhash_per_sec:.2f} MH/s")
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -236,32 +282,35 @@ def disk_stress_worker():
 # ═══════════════════════════════════════════════════════════════
 
 def ram_allocator():
-    """Allokiert kontinuierlich große RAM-Mengen"""
-    print("[RAM-Worker] Gestartet - Memory Allocation")
+    """Allokiert kontinuierlich MASSIVE RAM-Mengen - KRASSER MODUS!"""
+    print("[RAM-Worker] Gestartet - EXTREME Memory Allocation")
 
     memory_chunks = []
-    chunk_size = 100 * 1024 * 1024  # 100 MB Chunks
-    max_chunks = 50
+    chunk_size = RAM_CHUNK_SIZE_MB * 1024 * 1024  # Konfigurierbare Chunk-Größe
+    max_chunks = MAX_RAM_CHUNKS
 
     while True:
         try:
-            # Allokiere neuen Chunk
+            # Allokiere neuen KRASSEN Chunk
             chunk = np.random.rand(chunk_size // 8)  # 8 bytes per float64
             memory_chunks.append(chunk)
 
-            total_mb = len(memory_chunks) * 100
+            total_mb = len(memory_chunks) * RAM_CHUNK_SIZE_MB
+            total_gb = total_mb / 1024
             ram_percent = psutil.virtual_memory().percent
-            print(f"[RAM] Allokiert: {total_mb} MB - RAM-Nutzung: {ram_percent:.1f}%")
+            print(f"[RAM] 🔥 Allokiert: {total_mb} MB ({total_gb:.2f} GB) - RAM-Nutzung: {ram_percent:.1f}%")
 
             # Verhindere kompletten System-Crash durch RAM-Limit
-            if len(memory_chunks) >= max_chunks or ram_percent > 90:
-                memory_chunks.pop(0)
+            if len(memory_chunks) >= max_chunks or ram_percent > 85:
+                freed_chunk = memory_chunks.pop(0)
+                del freed_chunk  # Explizit freigeben
                 print(f"[RAM] Chunk freigegeben - RAM-Nutzung: {ram_percent:.1f}%")
 
-            time.sleep(0.5)
+            # Noch aggressiver - kürzere Wartezeit!
+            time.sleep(0.2)
 
         except MemoryError:
-            print("[RAM] MemoryError - Gebe Chunks frei")
+            print("[RAM] ⚠️  MemoryError - Gebe Chunks frei")
             memory_chunks = memory_chunks[-10:]  # Behalte nur 10 neueste
             time.sleep(2)
 
@@ -431,33 +480,46 @@ def main():
     try:
         # CPU Burner Prozesse (Multiprocessing für echte Parallelität)
         print(f"Starte {NUM_CPU_WORKERS} CPU-Burner-Prozesse...\n")
-        for i in range(NUM_CPU_WORKERS // 2):
+
+        # 1/3 Mandelbrot Workers
+        third = NUM_CPU_WORKERS // 3
+        for i in range(third):
             p = mp.Process(target=cpu_burner_mandelbrot, args=(i,))
             p.daemon = True
             p.start()
             processes.append(p)
 
-        for i in range(NUM_CPU_WORKERS // 2, NUM_CPU_WORKERS):
+        # 1/3 Matrix Workers
+        for i in range(third, third * 2):
             p = mp.Process(target=cpu_burner_matrix, args=(i,))
+            p.daemon = True
+            p.start()
+            processes.append(p)
+
+        # 1/3 CRYPTO MINING SIMULATORS! 🔥
+        for i in range(third * 2, NUM_CPU_WORKERS):
+            p = mp.Process(target=cpu_burner_crypto_simulator, args=(i,))
             p.daemon = True
             p.start()
             processes.append(p)
 
         time.sleep(2)
 
-        # Disk Stress (Thread)
-        print("\nStarte Disk-Stress-Worker...\n")
-        t = threading.Thread(target=disk_stress_worker, daemon=True)
-        t.start()
-        threads.append(t)
+        # MEHRERE Disk Stress Worker! 🔥
+        print("\nStarte 3 KRASSE Disk-Stress-Worker...\n")
+        for _ in range(3):
+            t = threading.Thread(target=disk_stress_worker, daemon=True)
+            t.start()
+            threads.append(t)
 
         time.sleep(1)
 
-        # RAM Allocator (Thread)
-        print("Starte RAM-Allocator...\n")
-        t = threading.Thread(target=ram_allocator, daemon=True)
-        t.start()
-        threads.append(t)
+        # MEHRERE RAM Allocators! 🔥
+        print("Starte 2 EXTREME RAM-Allocators...\n")
+        for _ in range(2):
+            t = threading.Thread(target=ram_allocator, daemon=True)
+            t.start()
+            threads.append(t)
 
         time.sleep(1)
 

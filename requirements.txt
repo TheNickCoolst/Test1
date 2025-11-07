@@ -1,0 +1,8 @@
+numpy
+matplotlib
+pygame
+moderngl
+moderngl-window
+pyrr
+pillow
+psutil
